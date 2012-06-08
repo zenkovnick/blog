@@ -50,7 +50,7 @@ class postsActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
 
-    //$this->postss = PostsTable::getInstance()->findAll();
+    $this->postss = PostsTable::getInstance()->findAll();
     $this->pager = new sfDoctrinePager('Posts', sfConfig::get('app_posts_on_homepage'));
     $this->pager->setQuery(PostsTable::getInstance()->getAllPostsQuery());
     $this->pager->setPage($request->getParameter('page', 1));

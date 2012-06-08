@@ -9,7 +9,7 @@
     <id><?php echo sha1(url_for('posts', array('sf_format' => 'atom'), true)) ?></id>
     <?php foreach($postss as $posts): ?>
         <entry>
-            <category><?php echo $posts->getCategoryName() ?></category>
+            <category><?php echo $posts->getCategories()->getCategoryName() ?></category>
             <title><?php echo $posts->getTitle() ?></title>
             <url><?php echo url_for('posts_show_full', array('id' => $posts->getId(), 'title_slug' => $posts->getTitleSlug()), true) ?></url>
             <id><?php echo sha1(url_for('posts', array('id' => $posts->getId()), true)) ?></id>
