@@ -1,0 +1,35 @@
+sfGuardUser:
+  User_admin:
+    first_name:     Nickolas
+    last_name:      Zenkov
+    email_address:  zenkovnick@gmail.com
+    username:       nick
+    password:       123
+    is_super_admin: true
+    Groups:         [Group_admin]
+  member1:
+      first_name:     Katrin
+      last_name:      Sokolova
+      email_address:  sokolkatrin@gmail.com
+      username:       katrin
+      password:       123
+      is_super_admin: false
+      Groups:         [Group_member]
+
+sfGuardGroup:
+  Group_admin:
+    name:           admin
+    description:    Administrator group
+    Permissions:    [Permission_admin]
+  Group_member:
+    name:           member
+    description:    Member group
+    Permissions:    [Permission_member]
+
+sfGuardPermission:
+  Permission_admin:
+    name:           admin
+    description:    Administrator permission
+  Permission_member:
+    name:           member
+    description:    Member permission

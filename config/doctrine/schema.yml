@@ -1,0 +1,90 @@
+Posts:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      unique: true
+      fields: [title]
+      canUpdate: true
+      builder: [slugifyClass, Slugify]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  columns:
+    category_id:  { type: integer, notnull: true }
+    title:        { type: string(60), notnull: true}
+    short_text:   { type: string(500), notnull: true }
+    full_text:    { type: string(10000), notnull: true }
+    thumb:        { type: string(255) }
+  relations:
+    Categories:   { onDelete: CASCADE, local: category_id, foreign: id, foreignAlias: PostsCategory }
+    Tags:         { onDelete: CASCADE, class: Tags, foreignAlias: Posts, refClass: PostsTags }
+
+Categories:
+  actAs:
+    Sluggable:
+      unique: true
+      fields: [category_name]
+      canUpdate: true
+      builder: [slugifyClass, Slugify]
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  columns:
+    category_name: { type: string(255), notnull: true }
+
+Tags:
+  columns:
+    tag_name: { type: string(255), notnull: true }
+  relations:
+    Posts:         { onDelete: CASCADE, class: Posts, foreignAlias: Tags, refClass: PostsTags }
+
+PostsTags:
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  columns:
+     posts_id:
+        type: integer
+        primary: true
+     tags_id:
+        type: integer
+        primary: true
+  relations:
+    Posts:
+      foreignAlias: PostsTags
+      onDelete: CASCADE
+    Tags:
+      foreignAlias: PostsTags
+      onDelete: CASCADE
+Roles:
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  columns:
+    role_name:    { type: string(255), notnull: true }
+
+Comments:
+  actAs: { Timestampable: ~ }
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  columns:
+    user_id:      { type: integer, notnull: true}
+    post_id:      { type: integer, notnull: true}
+    comment:      { type: string(255), notnull: true }
+  relations:
+    Posts:   { onDelete: CASCADE, local: post_id, foreign: id, foreignAlias: CommentsPost }
+    sfGuardUser:   { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: CommentsUser }
+
+sfGuardUserProfile:
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  columns:
+    id: { type: integer, primary: true, autoincrement: true }
+    user_id: { type: integer }
+    firstname: { type: string(255) }
+    lastname: { type: string(255) }
+    email: { type: string(128) }
+  relations:
+    sfGuardUser:   { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: UserProfile }

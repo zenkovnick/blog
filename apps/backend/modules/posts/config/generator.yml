@@ -1,0 +1,48 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Posts
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          posts
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        category_name: {label: Категория}
+        category_id: {label: Категория}
+        title: {label: Заголовок}
+        short_text: {label: Анонс поста}
+        full_text: {label: Пост}
+        getTags: {label: Теги}
+        created_at: {label: Дата создания}
+        updated_at: {label: Дата модификации}
+        thumb: {label: Миниатюра}
+        getThumb: {label: Миниатюра}
+      list:
+        title: Управление записями
+        sort: [updated_at, desc]
+        max_per_page: 10
+        layout: tabular
+        display: [_category_name, =title, short_text, _getTags, _getThumb]
+        batch_actions:
+            _delete:    ~
+        object_actions:
+            _delete:    ~
+            _edit:      ~
+      filter:
+        class: false
+      form:
+        class: BackendPostsForm
+      edit:
+        title: Редактирование записи "%%title%%"
+        fields:
+            tags_list:
+                label: Теги
+      new:
+        title: Создание новой записи

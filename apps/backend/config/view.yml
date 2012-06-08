@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    #title:        symfony project
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:    []
+
+  javascripts:    [jquery.min.js, tiny_mce/jquery.tinymce.js, tiny_mce/tiny_mce.js, tiny_mce/tiny_mce_popup.js, tiny_mce/tiny_mce_src.js]
+
+  has_layout:     true
+  layout:         layout

@@ -1,0 +1,43 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Comments
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          comments
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        post_id: {label: Запись}
+        post_title: {label: Запись}
+        user_id: {label: Пользователь}
+        user_name: {label: Пользователь}
+        comment: {label: Комментарий}
+        created_at: {label: Дата создания}
+      list:
+        title: Управление комментариями
+        sort: [created_at, desc]
+        max_per_page: 10
+        layout: tabular
+        display: [user_name, _post_title, comment, created_at]
+        batch_actions:
+            _delete:    ~
+        object_actions:
+            _delete:    ~
+            _edit:      ~
+      filter:
+        class: false
+      form: ~
+      edit:
+        title: Редактирование комментария"
+        fields:
+            full_text: { type: textarea_tag, params: rich=true size=10x20 tinymce_options=language:"en",theme_advanced_buttons2:"separator" }
+
+      new: ~
+
